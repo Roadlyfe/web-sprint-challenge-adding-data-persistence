@@ -12,20 +12,20 @@ const find = () => {
         .catch(err => console.log(err.message))
 }
 
-const insert = (resource) => {
+const insert = (project) => {
     return db('resources')
         .insert(project, 'resource_id')
         .then(([resource_id]) => db('resources').where({ resource_id }))
         .then((resources) =>
             resources.map((proj) => ({
-                ...proj,
-                project_completed: proj.project_completed ? true : false,
+                resource_name: proj.resource_name,
+                // project_completed: proj.project_completed ? true : false,
             }))
         )
         .catch(err => console.log(err.message))
 }
 
-
+//...proj,
 //task get join 
 // i still need to figure out the rest of the method
 

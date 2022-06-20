@@ -1,34 +1,55 @@
 // build your `Task` model here
 const db = require('../../data/dbConfig')
 
-const find = () => {
-    return db('projects')
-        .then((projects) =>
-            projects.map((proj) => ({
-                ...proj,
-                project_completed: proj.project_completed ? true : false,
-            }))
-        )
-        .catch(err => console.log(err.message))
-}
 
-const insert = (project) => {
-    return db('projects')
-        .insert(project)
-        .then((project_id) => db('projects').where({ project_id }))
-        .then((projects) => {
-        
-        // const project = projects[0]
-        // project.project_completed = project.project_completed ? true : false
-            projects.map((proj) => ({
-               project_description: proj.project_description,
-               project_name: proj.project_name,
-               project_completed: proj.project_completed ? true : false,
+
+function find() {
+    return db('tasks as t')
+        .join('projects as p', 't.project_id', 'p.project_id')
+        .select(
+            't.task_description',
+            't.task_notes',
+            'task_completed',
+            'p.project_name',
+            'p.project_description'
+        )
+        .then(tasks => {
+            tasks.map(task => ({
+                ...task,
+                task_completed: task.task_completed ? true : false
             }))
-            return project
         })
         .catch(err => console.log(err.message))
 }
+
+// const find = () => {
+//     return db('projects')
+//         .then((projects) =>
+//             projects.map((proj) => ({
+//                 ...proj,
+//                 project_completed: proj.project_completed ? true : false,
+//             }))
+//         )
+//         .catch(err => console.log(err.message))
+// }
+
+// const insert = (project) => {
+//     return db('projects')
+//         .insert(project)
+//         .then((project_id) => db('projects').where({ project_id }))
+//         .then((projects) => {
+        
+//         // const project = projects[0]
+//         // project.project_completed = project.project_completed ? true : false
+//             projects.map((proj) => ({
+//                project_description: proj.project_description,
+//                project_name: proj.project_name,
+//                project_completed: proj.project_completed ? true : false,
+//             }))
+//             return project
+//         })
+//         .catch(err => console.log(err.message))
+// }
 
 
 //task get join 
@@ -59,5 +80,5 @@ const insert = (project) => {
 
 module.exports = {
     find,
-    insert,
+    // insert,
 }

@@ -16,20 +16,33 @@ const find = () => {
 const insert = (project) => {
     return db('projects')
         .insert(project, 'project_id')
-        .then((project_id) => db('projects').where({ project_id }))
-        .then((projects) => {
-        
-        // const project = projects[0]
-        // project.project_completed = project.project_completed ? true : false
-            projects.map((proj) => ({
-               project_description: proj.project_description,
-               project_name: proj.project_name,
-               project_completed: proj.project_completed ? true : false,
+        .then(([project_id]) => db('projects').where({ project_id }))
+        .then((projects) =>
+            projects.map((project) => ({
+                ...project,
+                project_completed: project.project_completed ? true : false,
             }))
-            // return project
-        })
+        )
         .catch(err => console.log(err.message))
 }
+
+// const insert = (project) => {
+//     return db('projects')
+//         .insert(project, 'project_id')
+//         .then((project_id) => db('projects').where({ project_id }))
+//         .then((projects) => {
+        
+//         // const project = projects[0]
+//         // project.project_completed = project.project_completed ? true : false
+//             projects.map((proj) => ({
+//                project_description: proj.project_description,
+//                project_name: proj.project_name,
+//                project_completed: proj.project_completed ? true : false,
+//             }))
+//             // return project
+//         })
+//         .catch(err => console.log(err.message))
+// }
 
 
 //task get join 
