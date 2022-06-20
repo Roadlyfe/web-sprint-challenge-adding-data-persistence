@@ -5,7 +5,7 @@ const Resource = require('./model')
 
 router.get('/', async (req, res) => {
     const resources = await Resource.find()
-    res.json(projects)
+    res.json(resources)
 })
 
 router.post('/', async (req,res) => {

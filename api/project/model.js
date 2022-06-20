@@ -15,14 +15,19 @@ const find = () => {
 
 const insert = (project) => {
     return db('projects')
-        .insert(project, 'project_id')
-        .then(([project_id]) => db('projects').where({ project_id }))
-        .then((projects) =>
+        .insert(project)
+        .then((project_id) => db('projects').where({ project_id }))
+        .then((projects) => {
+        
+        // const project = projects[0]
+        // project.project_completed = project.project_completed ? true : false
             projects.map((proj) => ({
-                ...proj,
-                project_completed: proj.project_completed ? true : false,
+               project_description: proj.project_description,
+               project_name: proj.project_name,
+               project_completed: proj.project_completed ? true : false,
             }))
-        )
+            // return project
+        })
         .catch(err => console.log(err.message))
 }
 
