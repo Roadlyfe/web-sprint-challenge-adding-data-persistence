@@ -15,7 +15,7 @@ const find = () => {
 
 const insert = (project) => {
     return db('projects')
-        .insert(project)
+        .insert(project, 'project_id')
         .then((project_id) => db('projects').where({ project_id }))
         .then((projects) => {
         

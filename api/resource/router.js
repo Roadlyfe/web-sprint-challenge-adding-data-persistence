@@ -2,7 +2,6 @@
 const router = require('express').Router()
 const Resource = require('./model')
 
-
 router.get('/', async (req, res) => {
     const resources = await Resource.find()
     res.json(resources)
@@ -10,7 +9,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req,res) => {
     const resource = req.body
-    const newResource = await Resource(resource)
+    const newResource = await Resource.insert(resource)
     res.json(newResource)
 })
 module.exports = router

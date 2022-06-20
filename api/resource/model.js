@@ -3,12 +3,12 @@ const db = require('../../data/dbConfig')
 
 const find = () => {
     return db('resources')
-        // .then((resource) =>
-        //    resource.map((proj) => ({
-        //         ...proj,
-        //         project_completed: proj.project_completed ? true : false,
-        //     }))
-        // )
+        .then((resource) =>
+           resource.map((proj) => ({
+                ...proj,
+                project_completed: proj.project_completed ? true : false,
+            }))
+        )
         .catch(err => console.log(err.message))
 }
 
