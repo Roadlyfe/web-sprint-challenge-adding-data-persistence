@@ -25,6 +25,13 @@ const insert = (project) => {
         .catch(err => console.log(err.message))
 }
 
+   // .then((resources) =>
+        //     resources.map((proj) => ({
+        //         resource_name: proj.resource_name,
+        //         // project_completed: proj.project_completed ? true : false,
+        //     }))
+        // )
+
 //...proj,
 //task get join 
 // i still need to figure out the rest of the method
