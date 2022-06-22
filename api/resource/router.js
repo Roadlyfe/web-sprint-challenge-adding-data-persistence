@@ -19,9 +19,3 @@ router.post('/', (req, res) => {
 
 module.exports = router
 
-
-// router.post('/', async (req,res) => {
-//     const resource = req.body
-//     const newResource = await Resource.insert(resource)
-//     res.json(newResource)
-// })

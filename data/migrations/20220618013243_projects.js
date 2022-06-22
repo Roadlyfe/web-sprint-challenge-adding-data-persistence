@@ -24,48 +24,7 @@ exports.up = async function (knex) {
             .inTable('projects')
             .onDelete('RESTRICT')
             .onUpdate('RESTRICT')
-
-            // .createTable("projects", (tbl) => {
-            //     tbl.increments("project_id");
-            //     tbl.string("project_name").notNullable();
-            //     tbl.string("project_description");
-            //     tbl.boolean("project_completed").notNullable().defaultTo(0);
-            // })
-    
-            // .createTable('tasks', (tbl) => {
-            //     tbl.increments('task_id')
-            //     tbl.string('task_description', 128).notNullable()
-            //     tbl.text('task_notes')
-            //     tbl.boolean('task_completed').notNullable()
-            //     tbl.integer('project_id')
-            //         .unsigned()
-            //         .notNullable()
-            //         .references('project_id')
-            //         .inTable('projects')
-            //         .onDelete('CASCADE')
-            //         .onUpdate('CASCADE')
-            // })
-            //im not sure if I should attach projects to tasks here or do it like i did below. 
         })
-        // .createTable('project_resources', table => {
-        //     table.increments('project_task_id')
-        //     // table.float('quantity').notNullable()
-        //     table.integer('task_id')
-        //         .unsigned()
-        //         .notNullable()
-        //         .references('task_id')
-        //         .inTable('tasks')
-        //         .onDelete('RESTRICT')
-        //         .onUpdate('RESTRICT')
-        //     table.integer('project_id')
-        //         .unsigned()
-        //         .notNullable()
-        //         .references('project_id')
-        //         .inTable('projects')
-        //         .onDelete('RESTRICT')
-        //         .onUpdate('RESTRICT')
-        // })
-
 };
 
 

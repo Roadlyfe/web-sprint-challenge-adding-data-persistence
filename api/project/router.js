@@ -17,7 +17,3 @@ router.post('/', (req, res) => {
   })
 })
 module.exports = router
-
-// const project = req.body
-// const newProject = await Project.insert(project)
-// res.json(newProject)
